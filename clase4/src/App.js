@@ -28,28 +28,67 @@ const App=()=>{
 // );
 
 
-  const [nombre, setNombre] = useState("");
-  const [nombreCopiado, setNombreCopiado] = useState("");
+  // const [nombre, setNombre] = useState("");
+  // const [nombreCopiado, setNombreCopiado] = useState("");
 
-  const cargarNombre = (evento) => {
-    setNombre(evento.target.value);
-    console.log(evento.target);
+  // const cargarNombre = (evento) => {
+  //   setNombre(evento.target.value);
+  //   console.log(evento.target);
+  // };
+
+  // const copiarNombre = () => {
+  //   setNombreCopiado(nombre);
+  // };
+  // return (
+  //   <div className="App">
+  //     <input
+  //       name="nombre"
+  //       onChange={(evento) => cargarNombre(evento)}
+  //       placeholder="Nombre"
+  //       type="text"
+  //     />
+  //     <br />
+  //     <button onClick={copiarNombre}> Copiar Nombre </button> <br />
+  //     <input value={nombreCopiado} />
+  //   </div>
+  // );
+
+  const [leyenda, setLeyenda] = useState("");
+  const [LeyendaCopiado, setLeyendaCopiado] = useState("");
+  const [disabled, setDisabled] = useState(true);
+
+  const cargarLeyenda = (e) => {
+    setLeyenda(e.target.value);
+    if (e.target.value.length === ""){
+      limpiarLeyenda( );
+      setDisabled(true)
+    }else {
+      setLeyenda(e.target.value);
+      setDisabled(false)
+    }
   };
 
-  const copiarNombre = () => {
-    setNombreCopiado(nombre);
+  const copiarLeyenda = () => {
+    setLeyendaCopiado(leyenda);
   };
+
+  const limpiarLeyenda = () => {
+    setLeyenda(" ");
+    setLeyendaCopiado(" ")
+  }
+
   return (
     <div className="App">
       <input
-        name="nombre"
-        onChange={(evento) => cargarNombre(evento)}
+        name="leyenda"
+        onChange={(e) => cargarLeyenda(e)}
         placeholder="Nombre"
         type="text"
       />
       <br />
-      <button onClick={copiarNombre}> Copiar Nombre </button> <br />
-      <input value={nombreCopiado} />
+      <button onClick={copiarLeyenda} > Mostar leyenda</button> <br />
+      <button onClick={limpiarLeyenda} disabled={disabled}> Limpiar leyenda</button> <br />
+      <input value={LeyendaCopiado} />
     </div>
   );
 
