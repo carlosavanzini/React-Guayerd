@@ -107,9 +107,11 @@ function App() {
   const [contraseniaNueva, setContraseniaNueva] = useState("");
   const ingresar = () => {
     setMostrar(false)
+  
   }
   const registrar = () => {
     setMostrar(true);
+  
   }
   const copiarUsuarioNuevo = (e) => {
     setUsuarioNuevo(e.target.value);
@@ -125,7 +127,11 @@ function App() {
   }
   const verificar = () => {
     if(usuario === usuarioNuevo && contrasenia === contraseniaNueva){
-    } else{
+      setMostrarParrafo(true);// si el if es afirmativo entra por ingreso satisfactorio sino no hace nada hasta que pongamos bien los datos
+      setUsuario("");// una vez que ingresa la usuario y contraseña correcta la deja vacia
+      setContrasenia("")// una vez que ingresa la usuario y contraseña correcta la deja vacia
+    } 
+    else{
     }
   }
   return(
@@ -138,7 +144,7 @@ function App() {
       <br/>
       { mostrar ? <input value={contraseniaNueva} onChange={(e)=>copiarContraseniaNueva(e)} placeholder="Contraseña Nueva"/> : <input value={contrasenia} onChange={(e)=>copiarContrasenia(e)} placeholder="Contraseña"/> }
       <br/>
-      { mostrar ? <button>Crear Usuario</button> : <button onClick={verificar}>Loguearte</button> }
+      { mostrar ?<button >Crear Usuario</button> : <button onClick={verificar}>Loguearte</button> }
       <br/>
       { mostrarParrafo ? <p>Ingreso satisfactorio</p> : <p></p> }
     </div>
